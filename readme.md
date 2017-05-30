@@ -18,7 +18,7 @@ this library.
 
 There are multiple ways of initializing a number to a particular value, but a string is the preferred method:
 
-```python 
+```
 >>> from engineering_notation import EngNumber
 >>> EngNumber('10k')
 10k
