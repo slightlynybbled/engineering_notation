@@ -1,4 +1,244 @@
 from decimal import *
+from string import digits
+
+_suffix_lookup = {
+    'p': 'e-12',
+    'n': 'e-9',
+    'u': 'e-6',
+    'm': 'e-3',
+    '': 'e0',
+    'k': 'e3',
+    'M': 'e6',
+    'G': 'e9',
+    'T': 'e12'
+}
+
+_exponent_lookup_scaled = {
+    '-36': 'p',
+    '-33': 'n',
+    '-30': 'u',
+    '-27': 'm',
+    '-24': '',
+    '-21': 'k',
+    '-18': 'M',
+    '-15': 'G',
+    '-12': 'T'
+}
+
+
+class EngUnit:
+    """
+    Represents an engineering number, complete with units
+    """
+    def __init__(self, value: (str, int, float), precision:int=2):
+        """
+        Initialize engineering with units
+        :param value:
+        :param precision:
+        """
+        suffix_keys = [key for key in _suffix_lookup.keys() if key != '']
+        self.unit = None
+
+        if isinstance(value, str):
+            # parse the string into unit and engineering number
+            new_value = ''
+            v_index = 0
+            for c in value:
+                if (c in digits) or (c in '.') or (c in suffix_keys):
+                    new_value += c
+                    v_index += 1
+                else:
+                    break
+
+            if len(value) >= v_index:
+                self.unit = value[v_index:]
+
+            self.eng_num = EngNumber(new_value, precision)
+
+        else:
+            self.eng_num = EngNumber(value, precision)
+
+    def __repr__(self):
+        """
+        Returns the object representation
+        :return: a string representing the engineering number
+        """
+        unit = self.unit if self.unit else ''
+        return str(self.eng_num) + unit
+
+    def __str__(self):
+        """
+        Returns the string representation
+        :return: a string representing the engineering number
+        """
+        return self.__repr__()
+
+    def __add__(self, other):
+        """
+        Add two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        if self.unit != other.unit:
+            raise AttributeError('units do not match')
+
+        return EngUnit(str(self.eng_num + other.eng_num) + self.unit)
+
+    def __radd__(self, other):
+        """
+        Add two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        return self.__add__(other)
+
+    def __sub__(self, other):
+        """
+        Subtract two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        if self.unit != other.unit:
+            raise AttributeError('units do not match')
+
+        return EngUnit(str(self.eng_num - other.eng_num) + self.unit)
+
+    def __rsub__(self, other):
+        """
+        Subtract two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        if self.unit != other.unit:
+            raise AttributeError('units do not match')
+
+        return EngUnit(str(other.eng_num - self.eng_num) + self.unit)
+
+    def __mul__(self, other):
+        """
+        Multiply two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        return EngUnit(str(self.eng_num * other.eng_num) + self.unit + other.unit)
+
+    def __rmul__(self, other):
+        """
+        Multiply two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        return self.__mul__(other)
+
+    def __truediv__(self, other):
+        """
+        Divide two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        new_unit = ''
+        if self.unit:
+            new_unit += self.unit
+        if other.unit:
+            new_unit += '/' + other.unit
+
+        return EngUnit(str(self.eng_num / other.eng_num) + new_unit)
+
+    def __rtruediv__(self, other):
+        """
+        Divide two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        return EngUnit(str(other.eng_num / self.eng_num) + (other.unit + '/' + self.unit))
+
+    def __lt__(self, other):
+        """
+        Compare two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        if self.unit != other.unit:
+            raise AttributeError('units do not match')
+
+        return self.eng_num < other.eng_num
+
+    def __gt__(self, other):
+        """
+        Compare two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        if self.unit != other.unit:
+            raise AttributeError('units do not match')
+
+        return self.eng_num > other.eng_num
+
+    def __le__(self, other):
+        """
+        Compare two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        if self.unit != other.unit:
+            raise AttributeError('units do not match')
+
+        return self.eng_num <= other.eng_num
+
+    def __ge__(self, other):
+        """
+        Compare two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        if self.unit != other.unit:
+            raise AttributeError('units do not match')
+
+        return self.eng_num >= other.eng_num
+
+    def __eq__(self, other):
+        """
+        Compare two engineering numbers, with units
+        :param other: EngNum, float, or int
+        :return: result
+        """
+        if not isinstance(other, EngNumber):
+            other = EngUnit(str(other))
+
+        if self.unit != other.unit:
+            raise AttributeError('units do not match')
+
+        return self.eng_num == other.eng_num
 
 
 class EngNumber:
@@ -6,31 +246,7 @@ class EngNumber:
     Used for easy manipulation of numbers which use engineering notation
     """
 
-    suffix_lookup = {
-        'p': 'e-12',
-        'n': 'e-9',
-        'u': 'e-6',
-        'm': 'e-3',
-        '': 'e0',
-        'k': 'e3',
-        'M': 'e6',
-        'G': 'e9',
-        'T': 'e12'
-    }
-
-    exponent_lookup_scaled = {
-        '-36': 'p',
-        '-33': 'n',
-        '-30': 'u',
-        '-27': 'm',
-        '-24': '',
-        '-21': 'k',
-        '-18': 'M',
-        '-15': 'G',
-        '-12': 'T'
-    }
-
-    def __init__(self, value: (str, int, float), precision=2):
+    def __init__(self, value: (str, int, float), precision: int=2):
         """
         Initialize the class
 
@@ -40,11 +256,11 @@ class EngNumber:
         self.precision = precision
 
         if isinstance(value, str):
-            suffix_keys = [key for key in self.suffix_lookup.keys() if key != '']
+            suffix_keys = [key for key in _suffix_lookup.keys() if key != '']
 
             for suffix in suffix_keys:
                 if suffix in value:
-                    value = value[:-1] + self.suffix_lookup[suffix]
+                    value = value[:-1] + _suffix_lookup[suffix]
                     break
 
             self.number = Decimal(value)
@@ -69,7 +285,7 @@ class EngNumber:
         if '.00' in base:
             base = base[:-3]
 
-        return base + self.exponent_lookup_scaled[exponent]
+        return base + _exponent_lookup_scaled[exponent]
 
     def __str__(self, eng=True, context=None):
         """
@@ -220,4 +436,3 @@ class EngNumber:
             other = EngNumber(other)
 
         return self.number == other.number
-
