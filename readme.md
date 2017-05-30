@@ -34,7 +34,7 @@ There are multiple ways of initializing a number to a particular value, but a st
 
 Where decimals are involved, we use a default precision of 2 digits:
 
-```python 
+```
 >>> EngNumber('4.99k')
 4.99k
 >>> EngNumber('4.9k')
@@ -44,7 +44,7 @@ Where decimals are involved, we use a default precision of 2 digits:
 This behavior can truncate your results in some cases, and cause your number to round.  To specify more or less
 digits, simply specify the precision in the declaration:
 
-```python 
+```
 >>> EngNumber('4.999k')
 5k
 >>> EngNumber('4.999k', precision=3)
@@ -53,7 +53,7 @@ digits, simply specify the precision in the declaration:
 
 Most operations that you would perform on numeric values are valid, although all operations are not implemented:
 
-```python 
+```
 >>> EngNumber('2.2k') * 2
 4.40k
 >>> 2 * EngNumber('2.2k')
