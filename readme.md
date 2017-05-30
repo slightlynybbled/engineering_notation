@@ -68,6 +68,25 @@ True
 True
 ```
 
+All of the above operations are also possible on the `EngUnit()` class as well.  The only difference is
+that units must match for addition/subtraction/comparison operations.  Although multiplication and division
+operations will work numerically, they may not always be strictly correct.  This is because EngUnit is not
+intended to replace a computer algebra system!
+
+```
+>>> EngUnit('2s') / EngUnit('4rotations')
+0.5s/rotations
+```
+
+Additionally, since there are 'reserved' letters for sizing the number, you must be careful with your units!
+
+```
+>>> EngUnit('2mm')
+2mm        # <<< this value equivalent to "0.002m"
+>>> EngUnit('2meter')
+2meter     # <<< this value is equivalent to "0.002eter", the "m" was used to scale the unit!
+```
+
 # Contributions
 
 Contributions are welcome.  Feel free to make feature requests in the issues.
