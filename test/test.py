@@ -37,6 +37,8 @@ def test_sub():
     assert str(EngNumber('220m') - EngNumber('220u')) == '219.78m'
     assert str(EngNumber('220m') - EngNumber('220n')) == '220m'
 
+    assert str(0.220 - EngNumber('0.01')) == '210m'
+
 
 def test_mul():
     assert str(EngNumber('220m') * EngNumber('2')) == '440m'
