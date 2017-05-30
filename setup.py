@@ -1,12 +1,11 @@
 from setuptools import setup, find_packages
 import os
-import markdown
 
 here = os.path.dirname(os.path.dirname(__file__))
 exec(open(os.path.join(here, 'engineering_notation/version.py')).read())
 
 with open('readme.md', 'r') as f:
-    readme = markdown.markdown(f.read())
+    readme = f.read()
 
 requirements = []
 
