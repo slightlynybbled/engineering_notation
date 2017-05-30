@@ -1,3 +1,5 @@
+![Travis CI Build Status](https://travis-ci.org/slightlynybbled/engineering_notation.svg?branch=master)
+
 # Purpose
 
 To easily work with human-readable engineering notation.  I wrote this as a quick tool for my own use.
