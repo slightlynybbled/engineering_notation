@@ -73,6 +73,20 @@ class EngUnit:
         """
         return self.__repr__()
 
+    def __int__(self):
+        """
+        Implements the 'int()' method
+        :return:
+        """
+        return int(self.eng_num)
+
+    def __float__(self):
+        """
+        Implements the 'float()' method
+        :return:
+        """
+        return float(self.eng_num)
+
     def __add__(self, other):
         """
         Add two engineering numbers, with units
@@ -293,6 +307,20 @@ class EngNumber:
         :return: a string representing the engineering number
         """
         return self.__repr__()
+
+    def __int__(self):
+        """
+        Implements the 'int()' method
+        :return:
+        """
+        return int(self.number)
+
+    def __float__(self):
+        """
+        Implements the 'float()' method
+        :return:
+        """
+        return float(self.number)
 
     def __add__(self, other):
         """

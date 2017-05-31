@@ -89,6 +89,16 @@ def test_enum_le():
     assert EngNumber('220k') <= 220000
 
 
+def test_enum_to_int():
+    assert int(EngNumber('220k')) == 220000
+    assert int(EngNumber('220m')) == 0
+
+
+def test_enum_to_float():
+    assert float(EngNumber('220k')) == 220000.0
+    assert float(EngNumber('220m')) == 0.220
+
+
 ''' tests for EngUnit()'''
 
 
@@ -212,3 +222,13 @@ def test_le():
         EngUnit('220kohm') >= 219000
     with pytest.raises(AttributeError):
         219000 >= EngUnit('220kohm')
+
+
+def test_to_int():
+    assert int(EngUnit('220k')) == 220000
+    assert int(EngUnit('220m')) == 0
+
+
+def test_to_float():
+    assert float(EngUnit('220k')) == 220000.0
+    assert float(EngUnit('220m')) == 0.220
