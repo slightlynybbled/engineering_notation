@@ -7,6 +7,8 @@ I found that I was writing the same functionality into multiple packages and wou
 package to take care of this manipulation for me.  The package should be easily extended for other use cases.
 The package is unit-less, so only operates on numeric values.  Unit detection may be added in future versions.
 
+More information may be found at [for(embed)](http://forembed.com/engineering-notation-in-python.html).
+
 # Installation
 
 Install using pip: `pip install engineering_notation`.
