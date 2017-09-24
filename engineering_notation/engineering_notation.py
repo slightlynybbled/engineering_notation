@@ -282,6 +282,22 @@ class EngNumber:
         elif isinstance(value, int) or isinstance(value, float):
             self.number = Decimal(str(value))
 
+    def to_pn(self):
+        """
+        Returns the part number equivalent.  For instance, a '1k' would still be '1k', but a
+        '1.2k' would, instead, be a '1k2'
+        :return:
+        """
+        string = str(self)
+        if '.' not in string:
+            return string
+
+        if not string[-1].isalpha():
+            return string
+
+        letter = string[-1]
+        return string.replace('.', letter)[:-1]
+
     def __repr__(self):
         """
         Returns the string representation

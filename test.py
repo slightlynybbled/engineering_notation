@@ -99,8 +99,20 @@ def test_enum_to_float():
     assert float(EngNumber('220m')) == 0.220
 
 
-''' tests for EngUnit()'''
+def test_to_pn():
+    assert EngNumber('1.2M').to_pn() == '1M20'
+    assert EngNumber('220M').to_pn() == '220M'
 
+    assert EngNumber('220k').to_pn() == '220k'
+    assert EngNumber('1.2k').to_pn() == '1k20'
+
+    assert EngNumber('220').to_pn() == '220'
+    assert EngNumber('1.2').to_pn() == '1.20'
+
+    assert EngNumber('220m').to_pn() == '220m'
+    assert EngNumber('1.2m').to_pn() == '1m20'
+
+''' tests for EngUnit()'''
 
 def test_to_str():
     assert str(EngUnit('220') == '220')
