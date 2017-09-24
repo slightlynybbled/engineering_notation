@@ -279,7 +279,7 @@ class EngNumber:
 
             self.number = Decimal(value)
 
-        elif isinstance(value, int) or isinstance(value, float):
+        elif isinstance(value, int) or isinstance(value, float) or isinstance(value, EngNumber):
             self.number = Decimal(str(value))
 
     def to_pn(self, sub_letter=None):

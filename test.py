@@ -119,6 +119,11 @@ def test_to_pn_with_letter():
     assert EngNumber(22.1).to_pn('C') == '22C10'
 
 
+def test_enum_to_enum():
+    enum = EngNumber('1.2')
+    assert str(EngNumber(enum)) == '1.20'
+
+
 ''' tests for EngUnit()'''
 
 def test_to_str():
