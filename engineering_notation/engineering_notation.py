@@ -282,7 +282,7 @@ class EngNumber:
         elif isinstance(value, int) or isinstance(value, float):
             self.number = Decimal(str(value))
 
-    def to_pn(self):
+    def to_pn(self, sub_letter=None):
         """
         Returns the part number equivalent.  For instance, a '1k' would still be '1k', but a
         '1.2k' would, instead, be a '1k2'
@@ -292,7 +292,11 @@ class EngNumber:
         if '.' not in string:
             return string
 
+        # take care of the case of when there is no scaling unit
         if not string[-1].isalpha():
+            if sub_letter is not None:
+                return string.replace('.', sub_letter)
+
             return string
 
         letter = string[-1]

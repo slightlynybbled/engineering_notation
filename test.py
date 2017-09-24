@@ -112,6 +112,13 @@ def test_to_pn():
     assert EngNumber('220m').to_pn() == '220m'
     assert EngNumber('1.2m').to_pn() == '1m20'
 
+
+def test_to_pn_with_letter():
+    assert EngNumber('1.2').to_pn('R') == '1R20'
+    assert EngNumber(22.0).to_pn('C') == '22'
+    assert EngNumber(22.1).to_pn('C') == '22C10'
+
+
 ''' tests for EngUnit()'''
 
 def test_to_str():
