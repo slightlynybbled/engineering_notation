@@ -44,7 +44,7 @@ class EngUnit:
             new_value = ''
             v_index = 0
             for c in value:
-                if (c in digits) or (c in '.') or (c in suffix_keys):
+                if (c in digits) or (c in ['.', '-']) or (c in suffix_keys):
                     new_value += c
                     v_index += 1
                 else:

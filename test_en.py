@@ -247,8 +247,8 @@ def test_to_str():
     assert str(EngUnit('220ohm') == '220ohm')
 
     # negative_numbers
-    # ##ERROR:assert str(EngUnit('-220')    == '-220')
-    # ##ERROR:assert str(EngUnit('-220ohm') == '-220ohm')
+    assert str(EngUnit('-220')    == '-220')
+    assert str(EngUnit('-220ohm') == '-220ohm')
 
 
 def test_to_str_large():
@@ -260,8 +260,8 @@ def test_to_str_large():
     assert str(EngUnit(220001.25)) == '220k'
 
     # negative_numbers
-    # ##ERROR:assert str(EngUnit('-220kHz'))  == '-220kHz'
-    # ##ERROR:assert str(EngUnit('-220000'))  == '-220k'
+    assert str(EngUnit('-220kHz'))  == '-220kHz'
+    assert str(EngUnit('-220000'))  == '-220k'
     assert str(EngUnit(-220000)) == '-220k'
     assert str(EngUnit(-220000.00)) == '-220k'
     assert str(EngUnit(-220001.25)) == '-220k'
@@ -275,8 +275,8 @@ def test_to_str_small():
     assert str(EngUnit(0.220000125)) == '220m'
 
     # negative_numbers
-    # ##ERROR:assert str(EngUnit('-220mohm'))   == '-220mohm'
-    # ##ERROR:assert str(EngUnit('-0.220'))     == '-220m'
+    assert str(EngUnit('-220mohm'))   == '-220mohm'
+    assert str(EngUnit('-0.220'))     == '-220m'
     assert str(EngUnit(-0.220)) == '-220m'
     assert str(EngUnit(-0.220000125)) == '-220m'
 
@@ -295,21 +295,18 @@ def test_add():
     with pytest.raises(AttributeError):
         EngUnit('10m') + EngUnit('220mHz')
 
-        # negative_numbers
-        # ##ERROR:assert str(EngUnit('-220mHz')
-        # + EngUnit('-10mHz'))    == '-230mHz'
-        # ##ERROR:assert str(EngUnit('-220mohm')
-        # + EngUnit('-220uohm')) == '-220.22mohm'
-        # ##ERROR:assert str(EngUnit('-220m')
-        # + EngUnit('-220n'))       == '-220m'
+    # negative_numbers
+    assert str(EngUnit('-220mHz') + EngUnit('-10mHz'))    == '-230mHz'
+    assert str(EngUnit('-220mohm') + EngUnit('-220uohm')) == '-220.22mohm'
+    assert str(EngUnit('-220m') + EngUnit('-220n'))       == '-220m'
 
-        # ##ERROR:assert str(EngUnit('-220m') + -0.01) == '-230m'
-        # ##ERROR:assert str(-0.01 + EngUnit('-220m')) == '-230m'
+    assert str(EngUnit('-220m') + -0.01) == '-230m'
+    assert str(-0.01 + EngUnit('-220m')) == '-230m'
 
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    EngUnit('-220mHz') + EngUnit('-10m')
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    EngUnit('-10m') + EngUnit('-220mHz')
+    with pytest.raises(AttributeError):
+        EngUnit('-220mHz') + EngUnit('-10m')
+    with pytest.raises(AttributeError):
+        EngUnit('-10m') + EngUnit('-220mHz')
 
 
 def test_sub():
@@ -328,23 +325,20 @@ def test_sub():
     with pytest.raises(AttributeError):
         10.0 - EngUnit('220mHz')
 
-        # negative_numbers
-        # ##ERROR:assert str(EngUnit('-220mHz')
-        # - EngUnit('-10mHz')) == '-210mHz'
-        # ##ERROR:assert str(EngUnit('-220mohm')
-        # - EngUnit('-220uohm')) == '-219.78mohm'
-        # ##ERROR:assert str(EngUnit('-220m')
-        # - EngUnit('-220n'))       == '-220m'
+    # negative_numbers
+    assert str(EngUnit('-220mHz') - EngUnit('-10mHz')) == '-210mHz'
+    assert str(EngUnit('-220mohm') - EngUnit('-220uohm')) == '-219.78mohm'
+    assert str(EngUnit('-220m') - EngUnit('-220n'))       == '-220m'
 
-        # ##ERROR:assert str(EngUnit('-220m') - -0.01)  == '-210m'
-        # ##ERROR:assert str(-0.220 - EngUnit('-0.01')) == '-210m'
+    assert str(EngUnit('-220m') - -0.01)  == '-210m'
+    assert str(-0.220 - EngUnit('-0.01')) == '-210m'
 
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    EngUnit('-220mHz') - EngUnit('-10m')
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    EngUnit('-10m') - EngUnit('-220mHz')
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    -10.0 - EngUnit('-220mHz')
+    with pytest.raises(AttributeError):
+        EngUnit('-220mHz') - EngUnit('-10m')
+    with pytest.raises(AttributeError):
+        EngUnit('-10m') - EngUnit('-220mHz')
+    with pytest.raises(AttributeError):
+        -10.0 - EngUnit('-220mHz')
 
 
 def test_mul():
@@ -360,15 +354,15 @@ def test_mul():
     assert str(2.0 * EngUnit('220ms')) == '440ms'
 
     # negative_numbers
-    # ##ERROR:assert str(EngUnit('-220ms') * EngUnit('-2Hz')) == '440msHz'
-    # ##ERROR:assert str(EngUnit('-220ms') * EngUnit('-2'))   == '440ms'
-    # ##ERROR:assert str(EngUnit('-220m') * EngUnit('-2s'))   == '440ms'
+    assert str(EngUnit('-220ms') * EngUnit('-2Hz')) == '440msHz'
+    assert str(EngUnit('-220ms') * EngUnit('-2'))   == '440ms'
+    assert str(EngUnit('-220m') * EngUnit('-2s'))   == '440ms'
 
-    # ##ERROR:assert str(EngUnit('-220ms') * -2)   == '440ms'
-    # ##ERROR:assert str(EngUnit('-220ms') * -2.0) == '440ms'
+    assert str(EngUnit('-220ms') * -2)   == '440ms'
+    assert str(EngUnit('-220ms') * -2.0) == '440ms'
 
-    # ##ERROR:assert str(-2 * EngUnit('-220ms'))   == '440ms'
-    # ##ERROR:assert str(-2.0 * EngUnit('-220ms')) == '440ms'
+    assert str(-2 * EngUnit('-220ms'))   == '440ms'
+    assert str(-2.0 * EngUnit('-220ms')) == '440ms'
 
 
 def test_div():
@@ -384,15 +378,15 @@ def test_div():
     assert str(2.0 / EngUnit('220ms')) == '9.09/s'
 
     # negative_numbers
-    # ##ERROR:assert str(EngUnit('-220ms') / EngUnit('-2s')) == '110ms/s'
-    # ##ERROR:assert str(EngUnit('-220ms') / EngUnit('-2'))  == '110ms'
-    # ##ERROR:assert str(EngUnit('-220m') / EngUnit('-2s'))  == '110m/s'
+    assert str(EngUnit('-220ms') / EngUnit('-2s')) == '110ms/s'
+    assert str(EngUnit('-220ms') / EngUnit('-2'))  == '110ms'
+    assert str(EngUnit('-220m') / EngUnit('-2s'))  == '110m/s'
 
-    # ##ERROR:assert str(EngUnit('-220ms') / -2)   == '110ms'
-    # ##ERROR:assert str(EngUnit('-220ms') / -2.0) == '110ms'
+    assert str(EngUnit('-220ms') / -2)   == '110ms'
+    assert str(EngUnit('-220ms') / -2.0) == '110ms'
 
-    # ##ERROR:assert str(-2 / EngUnit('-220ms'))   == '9.09/s'
-    # ##ERROR:assert str(-2.0 / EngUnit('-220ms')) == '9.09/s'
+    assert str(-2 / EngUnit('-220ms'))   == '9.09/s'
+    assert str(-2.0 / EngUnit('-220ms')) == '9.09/s'
 
 
 def test_eq():
@@ -411,20 +405,20 @@ def test_eq():
     with pytest.raises(AttributeError):
         EngUnit('220mHz') == 10.0
 
-        # negative_numbers
-        # ##ERROR:assert EngUnit('-220k') == EngUnit(-220000)
-        # ##ERROR:assert EngUnit('-220k') == -220000
-        # ##ERROR:assert EngUnit('-220k') == -220000.0
+    # negative_numbers
+    assert EngUnit('-220k') == EngUnit(-220000)
+    assert EngUnit('-220k') == -220000
+    assert EngUnit('-220k') == -220000.0
 
-        # ##ERROR:assert -220000   == EngUnit('-220k')
-        # ##ERROR:assert -220000.0 == EngUnit('-220k')
+    assert -220000   == EngUnit('-220k')
+    assert -220000.0 == EngUnit('-220k')
 
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    EngUnit('-220mHz') == EngUnit('-0.220ohm')
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    EngUnit('-220mHz') == -10
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    EngUnit('-220mHz') == -10.0
+    with pytest.raises(AttributeError):
+        EngUnit('-220mHz') == EngUnit('-0.220ohm')
+    with pytest.raises(AttributeError):
+        EngUnit('-220mHz') == -10
+    with pytest.raises(AttributeError):
+       EngUnit('-220mHz') == -10.0
 
 
 def test_gt():
@@ -434,11 +428,11 @@ def test_gt():
     with pytest.raises(AttributeError):
         EngUnit('220kohm') > 219000
 
-        # negative_numbers
-        # ##ERROR:assert EngUnit('-220kohm') < EngUnit('-219000ohm')
+    # negative_numbers
+    assert EngUnit('-220kohm') < EngUnit('-219000ohm')
 
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    EngUnit('-220kohm') < -219000
+    with pytest.raises(AttributeError):
+        EngUnit('-220kohm') < -219000
 
 
 def test_lt():
@@ -463,12 +457,12 @@ def test_ge():
     with pytest.raises(AttributeError):
         EngUnit('220kohm') >= 219000
 
-        # negative_numbers
-        # ##ERROR:assert EngUnit('-220kohm') <= EngUnit('-219000ohm')
-        # ##ERROR:assert EngUnit('-220kohm') <= EngUnit('-220000ohm')
+    # negative_numbers
+    assert EngUnit('-220kohm') <= EngUnit('-219000ohm')
+    assert EngUnit('-220kohm') <= EngUnit('-220000ohm')
 
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    EngUnit('-220kohm') <= -219000
+    with pytest.raises(AttributeError):
+        EngUnit('-220kohm') <= -219000
 
 
 def test_le():
@@ -481,14 +475,14 @@ def test_le():
     with pytest.raises(AttributeError):
         219000 >= EngUnit('220kohm')
 
-        # negative_numbers
-        # ##ERROR:assert EngUnit('-220kohm') >= EngUnit('-221000ohm')
-        # ##ERROR:assert EngUnit('-220kohm') >= EngUnit('-220000ohm')
+    # negative_numbers
+    assert EngUnit('-220kohm') >= EngUnit('-221000ohm')
+    assert EngUnit('-220kohm') >= EngUnit('-220000ohm')
 
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    EngUnit('-220kohm') <= -219000
-        # ##ERROR:with pytest.raises(AttributeError):
-        # ##ERROR:    -219000 <= EngUnit('-220kohm')
+    with pytest.raises(AttributeError):
+        EngUnit('-220kohm') <= -219000
+    with pytest.raises(AttributeError):
+        -219000 <= EngUnit('-220kohm')
 
 
 def test_to_int():
@@ -497,8 +491,8 @@ def test_to_int():
     assert int(EngUnit('220m')) == 0
 
     # negative_numbers
-    # ##ERROR:assert int(EngUnit('-220k')) == -220000
-    # ##ERROR:assert int(EngUnit('-220m')) == -0
+    assert int(EngUnit('-220k')) == -220000
+    assert int(EngUnit('-220m')) == -0
 
 
 def test_to_float():
@@ -507,5 +501,5 @@ def test_to_float():
     assert float(EngUnit('220m')) == 0.220
 
     # negative_numbers
-    # ##ERROR:assert float(EngUnit('-220k')) == -220000.0
-    # ##ERROR:assert float(EngUnit('-220m')) == -0.220
+    assert float(EngUnit('-220k')) == -220000.0
+    assert float(EngUnit('-220m')) == -0.220
