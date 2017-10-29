@@ -13,11 +13,17 @@ More information may be found at [for(embed)](http://forembed.com/engineering-no
 
 Install using pip: `pip install engineering_notation`.
 
-# Status
+# Status and Contributions
 
 This project currently has 100% test coverage.  Have a look in `test.py` for examples of how to use
 this library. To execute the tests, run `pytest` from the main directory or, 
 in some environments, it may be necessary to run `python3 -m pytest`.
+
+Any contributions must pass 100% of current tests and pass flake8.  To execute
+flake8, navigate to the project directory and `python3 setup.py flake8`.
+
+Your pull request will automatically be run through testing and flake8 checks and
+any pull requests that do not pass these will be put on hold pending passing.
 
 # Use 
 
