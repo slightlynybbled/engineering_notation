@@ -16,11 +16,8 @@ Install using pip: `pip install engineering_notation`.
 # Status
 
 This project currently has 100% test coverage.  Have a look in `test.py` for examples of how to use
-this library. To execute the tests, run the command bellow:
-
-```
-$ python3 -m pytest test.py
-```
+this library. To execute the tests, run `pytest` from the main directory or, 
+in some environments, it may be necessary to run `python3 -m pytest`.
 
 # Use 
 
