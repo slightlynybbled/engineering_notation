@@ -1,4 +1,4 @@
-from decimal import *
+from decimal import Decimal
 from string import digits
 
 _suffix_lookup = {
@@ -30,7 +30,7 @@ class EngUnit:
     """
     Represents an engineering number, complete with units
     """
-    def __init__(self, value: (str, int, float), precision:int=2):
+    def __init__(self, value: (str, int, float), precision: int=2):
         """
         Initialize engineering with units
         :param value:
@@ -146,7 +146,8 @@ class EngUnit:
         if not isinstance(other, EngNumber):
             other = EngUnit(str(other))
 
-        return EngUnit(str(self.eng_num * other.eng_num) + self.unit + other.unit)
+        return EngUnit(str(self.eng_num * other.eng_num)
+                       + self.unit + other.unit)
 
     def __rmul__(self, other):
         """
@@ -182,7 +183,8 @@ class EngUnit:
         if not isinstance(other, EngNumber):
             other = EngUnit(str(other))
 
-        return EngUnit(str(other.eng_num / self.eng_num) + (other.unit + '/' + self.unit))
+        return EngUnit(str(other.eng_num / self.eng_num)
+                       + (other.unit + '/' + self.unit))
 
     def __lt__(self, other):
         """
@@ -264,7 +266,8 @@ class EngNumber:
         """
         Initialize the class
 
-        :param value: string, integer, or float representing the numeric value of the number
+        :param value: string, integer, or float representing
+        the numeric value of the number
         :param precision: the precision past the decimal - default to 2
         """
         self.precision = precision
@@ -279,12 +282,15 @@ class EngNumber:
 
             self.number = Decimal(value)
 
-        elif isinstance(value, int) or isinstance(value, float) or isinstance(value, EngNumber):
+        elif (isinstance(value, int)
+              or isinstance(value, float)
+              or isinstance(value, EngNumber)):
             self.number = Decimal(str(value))
 
     def to_pn(self, sub_letter=None):
         """
-        Returns the part number equivalent.  For instance, a '1k' would still be '1k', but a
+        Returns the part number equivalent.  For instance,
+        a '1k' would still be '1k', but a
         '1.2k' would, instead, be a '1k2'
         :return:
         """

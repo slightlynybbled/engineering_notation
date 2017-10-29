@@ -6,4 +6,4 @@ python:
 
 install: "pip install pytest"
 
-script: py.test test.py
+script: py.test test_en.py

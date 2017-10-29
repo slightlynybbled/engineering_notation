@@ -1,6 +1,8 @@
 from setuptools import setup, find_packages
 import os
 
+__version__ = None
+
 # ---------------------------------
 # imports the version from the package
 here = os.path.dirname(os.path.dirname(__file__))
@@ -31,6 +33,7 @@ setup(
     url='https://github.com/slightlynybbled/engineering_notation',
     packages=find_packages(),
     install_requires=requirements,
+    setup_requires=['flake8', 'pytest'],
     license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
