@@ -8,14 +8,11 @@ __version__ = None
 here = os.path.dirname(os.path.dirname(__file__))
 exec(open(os.path.join(here, 'engineering_notation/version.py')).read())
 
-# ---------------------------------
-# converts the readme.md to readme.rst
 try:
-    from pypandoc import convert
-    readme = convert('readme.md', 'rst')
-except ImportError:
+    with open('readme.md', 'r') as f:
+        readme = f.read()
+except FileNotFoundError:
     readme = ''
-
 
 # ---------------------------------
 # project requirements

@@ -2,6 +2,10 @@ from decimal import Decimal
 from string import digits
 
 _suffix_lookup = {
+    'y': 'e-24',
+    'z': 'e-21',
+    'a': 'e-18',
+    'f': 'e-15',
     'p': 'e-12',
     'n': 'e-9',
     'u': 'e-6',
@@ -14,6 +18,10 @@ _suffix_lookup = {
 }
 
 _exponent_lookup_scaled = {
+    '-48': 'y',
+    '-45': 'z',
+    '-42': 'a',
+    '-39': 'f',
     '-36': 'p',
     '-33': 'n',
     '-30': 'u',

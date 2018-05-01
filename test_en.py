@@ -40,6 +40,33 @@ def test_enum_to_str_small():
     assert str(EngNumber(-0.220000125)) == '-220m'
 
 
+def test_new_units():
+    """
+    any new units - such as femto, atto, zepto, etc. should have
+    some basic testing added here
+    """
+
+    # testing femto
+    assert str(EngNumber('220f')) == '220f'
+    assert str(EngNumber(0.000000000000220)) == '220f'
+
+    # testing atto
+    assert str(EngNumber('220a')) == '220a'
+    assert str(EngNumber(0.000000000000000220)) == '220a'
+
+    # testing zepto
+    assert str(EngNumber('220z')) == '220z'
+    assert str(EngNumber(0.000000000000000000220)) == '220z'
+
+    # testing yocto
+    assert str(EngNumber('220y')) == '220y'
+    assert str(EngNumber(0.000000000000000000000220)) == '220y'
+
+    # wrap it all up
+    assert str(EngNumber('1f') + EngNumber('330a')) == '1.33f'
+    assert str(EngNumber('3z') + EngNumber('440y')) == '3.44z'
+
+
 def test_enum_add():
     # positive_numbers
     assert str(EngNumber('220m') + EngNumber('10m')) == '230m'
