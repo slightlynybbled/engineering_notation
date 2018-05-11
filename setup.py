@@ -25,6 +25,7 @@ setup(
     version=__version__,
     description='Easy engineering notation',
     long_description=readme,
+    long_description_content_type='text/markdown',
     author='Jason R. Jones',
     author_email='slightlynybbled@gmail.com',
     url='https://github.com/slightlynybbled/engineering_notation',
