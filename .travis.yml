@@ -8,5 +8,5 @@ install:
   - "pip install pytest flake8"
 
 script:
-  - "python setup.py flake8"
+  - "flake8 engineering_notation"
   - "py.test test_en.py"
