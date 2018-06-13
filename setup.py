@@ -4,9 +4,16 @@ import os
 __version__ = None
 
 # ---------------------------------
-# imports the version from the package
+# imports the version from the package (with a pycharm patch)
 here = os.path.dirname(os.path.dirname(__file__))
-exec(open(os.path.join(here, 'engineering_notation/version.py')).read())
+try:
+    with open(os.path.join(here, 'engineering_notation/version.py'), 'r') as f:
+        fdata = f.read()
+except FileNotFoundError:
+    with open(os.path.join(here, 'engineering_notation/engineering_notation/version.py'), 'r') as f:
+        fdata = f.read()
+
+exec(fdata)
 
 try:
     with open('readme.md', 'r') as f:
@@ -34,7 +41,7 @@ setup(
     setup_requires=['flake8', 'pytest'],
     license='MIT',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
