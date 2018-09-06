@@ -9,4 +9,4 @@ install:
 
 script:
   - "flake8 engineering_notation"
-  - "py.test test_en.py"
+  - "py.test tests/tests.py"
