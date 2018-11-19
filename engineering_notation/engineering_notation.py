@@ -330,8 +330,10 @@ class EngNumber:
         base, exponent = num_str.split('e')
 
         base = str(round(Decimal(base), self.precision))
-        if '.00' in base:
-            base = base[:-3]
+        
+        # remove trailing zeros and decimals:
+        while base[-1] in ".0":
+            base = base[:-1]
 
         return base + _exponent_lookup_scaled[exponent]
 
