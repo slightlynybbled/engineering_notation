@@ -332,8 +332,10 @@ class EngNumber:
         base = str(round(Decimal(base), self.precision))
         
         # remove trailing zeros and decimals:
-        while base[-1] in ".0":
-            base = base[:-1]
+        print(base)
+        # https://stackoverflow.com/questions/11227620/drop-trailing-zeros-from-decimal
+        if '.' in base:
+            base = base.rstrip('0').rstrip('.')
 
         return base + _exponent_lookup_scaled[exponent]
 
