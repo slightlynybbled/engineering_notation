@@ -331,9 +331,20 @@ class EngNumber:
 
         base = str(round(Decimal(base), self.precision))
         
-        # remove trailing zeros and decimals:
-        while base[-1] in ".0":
-            base = base[:-1]
+        # remove trailing decimals:
+        #print(base)
+        #https://stackoverflow.com/questions/3410976/how-to-round-a-number-to-significant-figures-in-python
+        # https://stackoverflow.com/questions/11227620/drop-trailing-zeros-from-decimal
+        #base = '%s' % float("%#.2G"%Decimal(base))
+        #print(base)
+        #remove trailing decimal
+        if '.' in base:
+            base = base.rstrip('.')
+
+        #remove trailing .00 in precision 2
+        if self.precision == 2:
+            if '.00' in base:
+                base = base[:-3]
 
         return base + _exponent_lookup_scaled[exponent]
 
