@@ -38,11 +38,11 @@ class EngUnit:
     """
     Represents an engineering number, complete with units
     """
-    def __init__(self, value: (str, int, float), precision: int=2):
+    def __init__(self, value: (str, int, float), precision: int = 2):
         """
         Initialize engineering with units
-        :param value:
-        :param precision:
+        :param value: the desired value in the form of a string, int, or float
+        :param precision: the number of decimal places
         """
         suffix_keys = [key for key in _suffix_lookup.keys() if key != '']
         self.unit = None
@@ -270,7 +270,7 @@ class EngNumber:
     Used for easy manipulation of numbers which use engineering notation
     """
 
-    def __init__(self, value: (str, int, float), precision: int=2):
+    def __init__(self, value: (str, int, float), precision: int = 2):
         """
         Initialize the class
 
@@ -330,18 +330,18 @@ class EngNumber:
         base, exponent = num_str.split('e')
 
         base = str(round(Decimal(base), self.precision))
-        
+
         # remove trailing decimals:
-        #print(base)
-        #https://stackoverflow.com/questions/3410976/how-to-round-a-number-to-significant-figures-in-python
+        # print(base)
+        # https://stackoverflow.com/questions/3410976/how-to-round-a-number-to-significant-figures-in-python
         # https://stackoverflow.com/questions/11227620/drop-trailing-zeros-from-decimal
-        #base = '%s' % float("%#.2G"%Decimal(base))
-        #print(base)
-        #remove trailing decimal
+        # base = '%s' % float("%#.2G"%Decimal(base))
+        # print(base)
+        # remove trailing decimal
         if '.' in base:
             base = base.rstrip('.')
 
-        #remove trailing .00 in precision 2
+        # remove trailing .00 in precision 2
         if self.precision == 2:
             if '.00' in base:
                 base = base[:-3]
