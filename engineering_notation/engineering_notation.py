@@ -38,11 +38,13 @@ class EngUnit:
     """
     Represents an engineering number, complete with units
     """
-    def __init__(self, value: (str, int, float), precision: int = 2):
+    def __init__(self, value: (str, int, float), precision: int = 2, significant: int = 0):
         """
         Initialize engineering with units
         :param value: the desired value in the form of a string, int, or float
         :param precision: the number of decimal places
+        :param significant: the number of significant digits
+        if given, significant takes precendence over precision
         """
         suffix_keys = [key for key in _suffix_lookup.keys() if key != '']
         self.unit = None
@@ -61,10 +63,10 @@ class EngUnit:
             if len(value) >= v_index:
                 self.unit = value[v_index:]
 
-            self.eng_num = EngNumber(new_value, precision)
+            self.eng_num = EngNumber(new_value, precision, significant)
 
         else:
-            self.eng_num = EngNumber(value, precision)
+            self.eng_num = EngNumber(value, precision, significant)
 
     def __repr__(self):
         """
@@ -270,15 +272,18 @@ class EngNumber:
     Used for easy manipulation of numbers which use engineering notation
     """
 
-    def __init__(self, value: (str, int, float), precision: int = 2):
+    def __init__(self, value: (str, int, float), precision: int = 2, significant: int = 0):
         """
         Initialize the class
 
         :param value: string, integer, or float representing
         the numeric value of the number
         :param precision: the precision past the decimal - default to 2
+        :param significant: the number of significant digits
+        if given, significant takes precendence over precision
         """
         self.precision = precision
+        self.significant = significant
 
         if isinstance(value, str):
             suffix_keys = [key for key in _suffix_lookup.keys() if key != '']
@@ -329,7 +334,15 @@ class EngNumber:
 
         base, exponent = num_str.split('e')
 
-        base = str(round(Decimal(base), self.precision))
+        if self.significant > 0:
+            if abs(Decimal(base)) >= 100.0:
+                base = str(round(Decimal(base), self.significant - 3))
+            elif abs(Decimal(base)) >= 10.0:
+                base = str(round(Decimal(base), self.significant - 2))
+            else:
+                base = str(round(Decimal(base), self.significant - 1))
+        else:
+            base = str(round(Decimal(base), self.precision))
 
         # remove trailing decimals:
         # print(base)
@@ -342,7 +355,7 @@ class EngNumber:
             base = base.rstrip('.')
 
         # remove trailing .00 in precision 2
-        if self.precision == 2:
+        if self.precision == 2 and self.significant == 0:
             if '.00' in base:
                 base = base[:-3]
 
