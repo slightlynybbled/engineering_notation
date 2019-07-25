@@ -1,6 +1,8 @@
-*.idea/
-*.cache/
-*egg-info/
-*__pycache__/
+.idea/
+.cache/
+*.egg-info/
+.eggs/
+__pycache__/
 build/
 dist/
+venv/
