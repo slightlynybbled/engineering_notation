@@ -26,7 +26,7 @@ def test_enum_to_str_large():
     assert str(EngNumber(-220001.25)) == '-220k'
 
 
-def test_enum_to_str_small():
+def test_engum_to_str_small():
     # positive_numbers
     assert str(EngNumber('220m')) == '220m'
     assert str(EngNumber('0.220')) == '220m'
@@ -38,6 +38,30 @@ def test_enum_to_str_small():
     assert str(EngNumber('-0.220')) == '-220m'
     assert str(EngNumber(-0.220)) == '-220m'
     assert str(EngNumber(-0.220000125)) == '-220m'
+
+
+def test_engnum_significant():
+    assert str(EngNumber('220m', significant=0)) == '220m'
+    assert str(EngNumber('220m', significant=1)) == '200m'
+    assert str(EngNumber('220m', significant=2)) == '220m'
+    assert str(EngNumber('220m', significant=3)) == '220m'
+    assert str(EngNumber('220m', significant=4)) == '220.0m'
+    assert str(EngNumber('220m', significant=5)) == '220.00m'
+
+    assert str(EngNumber('22m', significant=0)) == '22m'
+    assert str(EngNumber('22m', significant=1)) == '20m'
+    assert str(EngNumber('22m', significant=2)) == '22m'
+    assert str(EngNumber('22m', significant=3)) == '22.0m'
+    assert str(EngNumber('22.2m', significant=3)) == '22.2m'
+    assert str(EngNumber('22m', significant=4)) == '22.00m'
+    assert str(EngNumber('22.22m', significant=4)) == '22.22m'
+
+    assert str(EngNumber('2m', significant=0)) == '2m'
+    assert str(EngNumber('2m', significant=1)) == '2m'
+    assert str(EngNumber('2m', significant=2)) == '2.0m'
+    assert str(EngNumber('2.2m', significant=2)) == '2.2m'
+    assert str(EngNumber('2.2m', significant=3)) == '2.20m'
+    assert str(EngNumber('2.22m', significant=3)) == '2.22m'
 
 
 def test_new_units():

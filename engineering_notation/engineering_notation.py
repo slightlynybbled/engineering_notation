@@ -346,6 +346,9 @@ class EngNumber:
         else:
             base = str(round(Decimal(base), self.precision))
 
+        if 'e' in base.lower():
+            base = str(int(Decimal(base)))
+
         # remove trailing decimals:
         # print(base)
         # https://stackoverflow.com/questions/3410976/how-to-round-a-number-to-significant-figures-in-python
