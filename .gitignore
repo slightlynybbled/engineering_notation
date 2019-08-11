@@ -6,3 +6,10 @@ __pycache__/
 build/
 dist/
 venv/
+.mypy_cache
+.venv
+conftest.py
+.pytest_cache
+.vscode
+setup.cfg
+.coverage
