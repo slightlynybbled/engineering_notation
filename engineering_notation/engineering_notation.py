@@ -101,7 +101,7 @@ class EngUnit:
     def __add__(self, other):
         """
         Add two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -115,7 +115,7 @@ class EngUnit:
     def __radd__(self, other):
         """
         Add two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         return self.__add__(other)
@@ -123,7 +123,7 @@ class EngUnit:
     def __sub__(self, other):
         """
         Subtract two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -137,7 +137,7 @@ class EngUnit:
     def __rsub__(self, other):
         """
         Subtract two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -151,7 +151,7 @@ class EngUnit:
     def __mul__(self, other):
         """
         Multiply two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -163,7 +163,7 @@ class EngUnit:
     def __rmul__(self, other):
         """
         Multiply two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         return self.__mul__(other)
@@ -171,7 +171,7 @@ class EngUnit:
     def __truediv__(self, other):
         """
         Divide two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -188,7 +188,7 @@ class EngUnit:
     def __rtruediv__(self, other):
         """
         Divide two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -200,7 +200,7 @@ class EngUnit:
     def __lt__(self, other):
         """
         Compare two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -214,7 +214,7 @@ class EngUnit:
     def __gt__(self, other):
         """
         Compare two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -228,7 +228,7 @@ class EngUnit:
     def __le__(self, other):
         """
         Compare two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -242,7 +242,7 @@ class EngUnit:
     def __ge__(self, other):
         """
         Compare two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -256,7 +256,7 @@ class EngUnit:
     def __eq__(self, other):
         """
         Compare two engineering numbers, with units
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -390,7 +390,7 @@ class EngNumber:
     def __add__(self, other):
         """
         Add two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -402,7 +402,7 @@ class EngNumber:
     def __radd__(self, other):
         """
         Add two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         return self.__add__(other)
@@ -410,7 +410,7 @@ class EngNumber:
     def __sub__(self, other):
         """
         Subtract two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -422,7 +422,7 @@ class EngNumber:
     def __rsub__(self, other):
         """
         Subtract two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -434,7 +434,7 @@ class EngNumber:
     def __mul__(self, other):
         """
         Multiply two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -446,7 +446,7 @@ class EngNumber:
     def __rmul__(self, other):
         """
         Multiply two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         return self.__mul__(other)
@@ -454,7 +454,7 @@ class EngNumber:
     def __truediv__(self, other):
         """
         Divide two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -466,7 +466,7 @@ class EngNumber:
     def __rtruediv__(self, other):
         """
         Divide two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -478,7 +478,7 @@ class EngNumber:
     def __lt__(self, other):
         """
         Compare two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -489,7 +489,7 @@ class EngNumber:
     def __gt__(self, other):
         """
         Compare two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -500,7 +500,7 @@ class EngNumber:
     def __le__(self, other):
         """
         Compare two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -511,7 +511,7 @@ class EngNumber:
     def __ge__(self, other):
         """
         Compare two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
@@ -522,7 +522,7 @@ class EngNumber:
     def __eq__(self, other):
         """
         Compare two engineering numbers
-        :param other: EngNum, float, or int
+        :param other: EngNum, str, float, or int
         :return: result
         """
         if not isinstance(other, EngNumber):
