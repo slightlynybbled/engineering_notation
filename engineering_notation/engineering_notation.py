@@ -259,6 +259,8 @@ class EngUnit:
         :param other: EngNum, str, float, or int
         :return: result
         """
+        if not isinstance(other, (EngNumber, EngUnit, str, int, float)):
+            return NotImplemented
         if not isinstance(other, EngNumber):
             other = EngUnit(str(other))
 
@@ -525,6 +527,8 @@ class EngNumber:
         :param other: EngNum, str, float, or int
         :return: result
         """
+        if not isinstance(other, (EngNumber, str, int, float)):
+            return NotImplemented
         if not isinstance(other, EngNumber):
             other = EngNumber(other)
 

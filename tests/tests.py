@@ -182,6 +182,9 @@ def test_enum_eq():
     assert -220000 == EngNumber('-220k')
     assert -220000.0 == EngNumber('-220k')
 
+    assert not (EngNumber('220k') == object)
+
+
 
 def test_enum_gt():
     # positive_numbers
@@ -455,6 +458,7 @@ def test_eq():
         EngUnit('220mHz') == 10
     with pytest.raises(AttributeError):
         EngUnit('220mHz') == 10.0
+    assert not (EngUnit('220k') == object)
 
     # negative_numbers
     assert EngUnit('-220k') == EngUnit(-220000)
@@ -469,7 +473,7 @@ def test_eq():
     with pytest.raises(AttributeError):
         EngUnit('-220mHz') == -10
     with pytest.raises(AttributeError):
-       EngUnit('-220mHz') == -10.0
+        EngUnit('-220mHz') == -10.0
 
 
 def test_gt():
