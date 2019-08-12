@@ -40,6 +40,11 @@ def test_engum_to_str_small():
     assert str(EngNumber(-0.220000125)) == '-220m'
 
 
+def test_1000f():
+    assert str(EngNumber('1000f')) == '1p'
+    assert str(EngNumber('1p')) == '1p'
+
+
 def test_engnum_significant():
     assert str(EngNumber('220m', significant=0)) == '220m'
     assert str(EngNumber('220m', significant=1)) == '200m'
