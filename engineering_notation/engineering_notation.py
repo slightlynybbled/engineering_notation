@@ -38,8 +38,8 @@ class EngUnit:
     """
     Represents an engineering number, complete with units
     """
-    def __init__(self, value: (str, int, float),
-                 precision: int = 2, significant: int = 0):
+    def __init__(self, value,
+                 precision=2, significant=0):
         """
         Initialize engineering with units
         :param value: the desired value in the form of a string, int, or float
@@ -275,8 +275,8 @@ class EngNumber:
     Used for easy manipulation of numbers which use engineering notation
     """
 
-    def __init__(self, value: (str, int, float),
-                 precision: int = 2, significant: int = 0):
+    def __init__(self, value,
+                 precision=2, significant=0):
         """
         Initialize the class
 
