@@ -43,6 +43,7 @@ def test_engum_to_str_small():
 def test_1000f():
     assert str(EngNumber('1000f')) == '1p'
     assert str(EngNumber('1p')) == '1p'
+    assert str(EngNumber(0.000000000001)) == '1p'
 
 
 def test_engnum_significant():
