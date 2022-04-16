@@ -1,4 +1,4 @@
-![Travis CI Build Status](https://travis-ci.org/slightlynybbled/engineering_notation.svg?branch=master)
+[![Unit Tests](https://github.com/slightlynybbled/engineering_notation/actions/workflows/unittest.yml/badge.svg)](https://github.com/slightlynybbled/engineering_notation/actions/workflows/unittest.yml)
 
 # Purpose
 
