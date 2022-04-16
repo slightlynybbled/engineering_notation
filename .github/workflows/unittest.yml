@@ -19,7 +19,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install Requirements
-        run: python -m pip install pytest coverage
+        run: python -m pip install pytest coverage pytest-cov
 
       - name: Execute Tests
         run: pytest -v tests/ --cov=engineering_notation
