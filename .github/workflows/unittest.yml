@@ -25,4 +25,4 @@ jobs:
         run: python setup.py install
 
       - name: Execute Tests
-        run: flake8 engineering_notation & pytest -v tests/tests.py
+        run: flake8 engineering_notation & pytest -v tests
