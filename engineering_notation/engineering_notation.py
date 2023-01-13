@@ -39,7 +39,7 @@ class EngUnit:
     Represents an engineering number, complete with units
     """
     def __init__(self, value,
-                 precision=2, significant=0):
+                 precision=2, significant=0, unit: str = None):
         """
         Initialize engineering with units
         :param value: the desired value in the form of a string, int, or float
@@ -48,7 +48,7 @@ class EngUnit:
         if given, significant takes precendence over precision
         """
         suffix_keys = [key for key in _suffix_lookup.keys() if key != '']
-        self.unit = None
+        self.unit = unit
 
         if isinstance(value, str):
             # parse the string into unit and engineering number
@@ -61,7 +61,7 @@ class EngUnit:
                 else:
                     break
 
-            if len(value) >= v_index:
+            if self.unit is None and len(value) >= v_index:
                 self.unit = value[v_index:]
 
             self.eng_num = EngNumber(new_value, precision, significant)

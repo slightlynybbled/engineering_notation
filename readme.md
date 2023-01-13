@@ -94,6 +94,7 @@ Additionally, since there are 'reserved' letters for sizing the number, you must
 2mm        # <<< this value equivalent to "0.002m"
 >>> EngUnit('2meter')
 2meter     # <<< this value is equivalent to "0.002eter", the "m" was used to scale the unit!
+>>> EngUnit('2', unit='meter')   # <<< this will work better
 ```
 
 # Contributions

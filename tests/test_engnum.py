@@ -191,7 +191,6 @@ def test_enum_eq():
     assert not (EngNumber('220k') == object)
 
 
-
 def test_enum_gt():
     # positive_numbers
     assert EngNumber('220k') > 219000
@@ -307,8 +306,14 @@ def test_to_str():
     assert str(EngUnit('220ohm') == '220ohm')
 
     # negative_numbers
-    assert str(EngUnit('-220')    == '-220')
+    assert str(EngUnit('-220') == '-220')
     assert str(EngUnit('-220ohm') == '-220ohm')
+
+    assert EngUnit('220ohm').unit == 'ohm'
+    assert EngUnit('220', unit='ohm').unit == 'ohm'
+
+    assert EngUnit('2m', unit='meter').unit == 'meter'
+    assert EngUnit('2m', unit='meter').eng_num == EngNumber('2m')
 
 
 def test_to_str_large():
@@ -320,8 +325,8 @@ def test_to_str_large():
     assert str(EngUnit(220001.25)) == '220k'
 
     # negative_numbers
-    assert str(EngUnit('-220kHz'))  == '-220kHz'
-    assert str(EngUnit('-220000'))  == '-220k'
+    assert str(EngUnit('-220kHz')) == '-220kHz'
+    assert str(EngUnit('-220000')) == '-220k'
     assert str(EngUnit(-220000)) == '-220k'
     assert str(EngUnit(-220000.00)) == '-220k'
     assert str(EngUnit(-220001.25)) == '-220k'
@@ -335,8 +340,8 @@ def test_to_str_small():
     assert str(EngUnit(0.220000125)) == '220m'
 
     # negative_numbers
-    assert str(EngUnit('-220mohm'))   == '-220mohm'
-    assert str(EngUnit('-0.220'))     == '-220m'
+    assert str(EngUnit('-220mohm')) == '-220mohm'
+    assert str(EngUnit('-0.220')) == '-220m'
     assert str(EngUnit(-0.220)) == '-220m'
     assert str(EngUnit(-0.220000125)) == '-220m'
 
