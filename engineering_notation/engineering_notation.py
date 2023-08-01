@@ -1,5 +1,11 @@
 from decimal import Decimal
 from string import digits
+import sys
+
+try:
+    import numpy
+except ImportError:
+    pass
 
 _suffix_lookup = {
     'y': 'e-24',
@@ -303,7 +309,10 @@ class EngNumber:
               or isinstance(value, float)
               or isinstance(value, EngNumber)):
             self.number = Decimal(str(value))
-
+        else:
+            # finally, check for numpy import
+            if 'numpy' in sys.modules and isinstance(value, numpy.integer):
+                self.number = Decimal(str(value))
     def to_pn(self, sub_letter=None):
         """
         Returns the part number equivalent.  For instance,
