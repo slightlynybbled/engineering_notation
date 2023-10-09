@@ -70,6 +70,11 @@ def test_engnum_significant():
     assert str(EngNumber('2.22m', significant=3)) == '2.22m'
 
 
+def test_engnum_separator():
+    assert str(EngNumber("1.23k", separator=" ")) == "1.23 k"
+    assert str(EngNumber("1.23k", separator=" ").to_pn()) == "1k23"
+
+
 def test_new_units():
     """
     any new units - such as femto, atto, zepto, etc. should have
@@ -304,10 +309,12 @@ def test_to_str():
     # positive_numbers
     assert str(EngUnit('220') == '220')
     assert str(EngUnit('220ohm') == '220ohm')
+    assert str(EngUnit('220ohm', separator=" ")) == '220 ohm'
 
     # negative_numbers
     assert str(EngUnit('-220') == '-220')
     assert str(EngUnit('-220ohm') == '-220ohm')
+    assert str(EngUnit('-220ohm', separator=" ")) == '-220 ohm'
 
     assert EngUnit('220ohm').unit == 'ohm'
     assert EngUnit('220', unit='ohm').unit == 'ohm'

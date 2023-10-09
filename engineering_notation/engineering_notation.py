@@ -45,7 +45,7 @@ class EngUnit:
     Represents an engineering number, complete with units
     """
     def __init__(self, value,
-                 precision=2, significant=0, unit: str = None):
+                 precision=2, significant=0, unit: str = None, separator=""):
         """
         Initialize engineering with units
         :param value: the desired value in the form of a string, int, or float
@@ -70,10 +70,10 @@ class EngUnit:
             if self.unit is None and len(value) >= v_index:
                 self.unit = value[v_index:]
 
-            self.eng_num = EngNumber(new_value, precision, significant)
+            self.eng_num = EngNumber(new_value, precision, significant, separator)
 
         else:
-            self.eng_num = EngNumber(value, precision, significant)
+            self.eng_num = EngNumber(value, precision, significant, separator)
 
     def __repr__(self):
         """
@@ -282,7 +282,7 @@ class EngNumber:
     """
 
     def __init__(self, value,
-                 precision=2, significant=0):
+                 precision=2, significant=0, separator=""):
         """
         Initialize the class
 
@@ -294,6 +294,7 @@ class EngNumber:
         """
         self.precision = precision
         self.significant = significant
+        self.separator = separator
 
         if isinstance(value, str):
             suffix_keys = [key for key in _suffix_lookup.keys() if key != '']
@@ -332,7 +333,7 @@ class EngNumber:
             return string
 
         letter = string[-1]
-        return string.replace('.', letter)[:-1]
+        return string.replace('.', letter)[:-1].strip(self.separator)
 
     def __repr__(self):
         """
@@ -375,7 +376,7 @@ class EngNumber:
             if '.00' in base:
                 base = base[:-3]
 
-        return base + _exponent_lookup_scaled[exponent]
+        return base + self.separator + _exponent_lookup_scaled[exponent]
 
     def __str__(self, eng=True, context=None):
         """
