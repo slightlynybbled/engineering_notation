@@ -307,13 +307,13 @@ def test_enum_to_enum():
 
 def test_to_str():
     # positive_numbers
-    assert str(EngUnit('220') == '220')
-    assert str(EngUnit('220ohm') == '220ohm')
+    assert str(EngUnit('220')) == '220'
+    assert str(EngUnit('220ohm')) == '220ohm'
     assert str(EngUnit('220ohm', separator=" ")) == '220 ohm'
 
     # negative_numbers
-    assert str(EngUnit('-220') == '-220')
-    assert str(EngUnit('-220ohm') == '-220ohm')
+    assert str(EngUnit('-220')) == '-220'
+    assert str(EngUnit('-220ohm')) == '-220ohm'
     assert str(EngUnit('-220ohm', separator=" ")) == '-220 ohm'
 
     assert EngUnit('220ohm').unit == 'ohm'
