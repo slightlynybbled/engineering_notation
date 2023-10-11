@@ -70,7 +70,8 @@ class EngUnit:
             if self.unit is None and len(value) >= v_index:
                 self.unit = value[v_index:]
 
-            self.eng_num = EngNumber(new_value, precision, significant, separator)
+            self.eng_num = EngNumber(new_value, precision,
+                                     significant, separator)
 
         else:
             self.eng_num = EngNumber(value, precision, significant, separator)
@@ -314,6 +315,7 @@ class EngNumber:
             # finally, check for numpy import
             if 'numpy' in sys.modules and isinstance(value, numpy.integer):
                 self.number = Decimal(str(value))
+
     def to_pn(self, sub_letter=None):
         """
         Returns the part number equivalent.  For instance,
