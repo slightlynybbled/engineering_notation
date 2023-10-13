@@ -97,6 +97,18 @@ def test_new_units():
     assert str(EngNumber('220y')) == '220y'
     assert str(EngNumber(0.000000000000000000000220)) == '220y'
 
+    # testing peta
+    assert str(EngNumber('220P')) == '220P'
+    assert str(EngNumber(1e15)) == '1P'
+
+    # testing exxa
+    assert str(EngNumber('220E')) == '220E'
+    assert str(EngNumber(1e18)) == '1E'
+
+    # testing zetta
+    assert str(EngNumber('220Z')) == '220Z'
+    assert str(EngNumber(1e21)) == '1Z'
+
     # wrap it all up
     assert str(EngNumber('1f') + EngNumber('330a')) == '1.33f'
     assert str(EngNumber('3z') + EngNumber('440y')) == '3.44z'

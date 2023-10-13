@@ -20,23 +20,29 @@ _suffix_lookup = {
     'k': 'e3',
     'M': 'e6',
     'G': 'e9',
-    'T': 'e12'
+    'T': 'e12',
+    'P': 'e15',
+    'E': 'e18',
+    'Z': 'e21',
 }
 
 _exponent_lookup_scaled = {
-    '-48': 'y',
-    '-45': 'z',
-    '-42': 'a',
-    '-39': 'f',
-    '-36': 'p',
-    '-33': 'n',
-    '-30': 'u',
-    '-27': 'm',
-    '-24': '',
-    '-21': 'k',
-    '-18': 'M',
-    '-15': 'G',
-    '-12': 'T'
+    '-54': 'y',
+    '-51': 'z',
+    '-48': 'a',
+    '-45': 'f',
+    '-42': 'p',
+    '-39': 'n',
+    '-36': 'u',
+    '-33': 'm',
+    '-30': '',
+    '-27': 'k',
+    '-24': 'M',
+    '-21': 'G',
+    '-18': 'T',
+    '-15': 'P',
+    '-12': 'E',
+    '-9': 'Z',
 }
 
 
@@ -301,7 +307,7 @@ class EngNumber:
             suffix_keys = [key for key in _suffix_lookup.keys() if key != '']
 
             for suffix in suffix_keys:
-                if suffix in value:
+                if suffix == value[-1]:
                     value = value[:-1] + _suffix_lookup[suffix]
                     break
 
@@ -345,7 +351,7 @@ class EngNumber:
         # since Decimal class only really converts number that are very small
         # into engineering notation, then we will simply make all number a
         # small number and take advantage of Decimal class
-        num_str = self.number * Decimal('10e-25')
+        num_str = self.number * Decimal('10e-31')
         num_str = num_str.to_eng_string().lower()
 
         base, exponent = num_str.split('e')
