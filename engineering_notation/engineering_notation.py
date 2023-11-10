@@ -2,6 +2,8 @@ from decimal import Decimal
 from string import digits
 import sys
 
+from typing import Optional
+
 try:
     import numpy
 except ImportError:
@@ -51,7 +53,7 @@ class EngUnit:
     Represents an engineering number, complete with units
     """
     def __init__(self, value,
-                 precision=2, significant=0, unit: str = None, separator=""):
+                 precision=2, significant=0, unit: Optional[str] = None, separator=""):
         """
         Initialize engineering with units
         :param value: the desired value in the form of a string, int, or float
