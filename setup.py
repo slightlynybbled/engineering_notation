@@ -1,4 +1,5 @@
-from setuptools import setup, find_packages
+from setuptools import setup
+
 import os
 
 __version__ = None
@@ -36,7 +37,8 @@ setup(
     author='Jason R. Jones',
     author_email='slightlynybbled@gmail.com',
     url='https://github.com/slightlynybbled/engineering_notation',
-    packages=find_packages(),
+    packages=["engineering_notation"],
+    package_data={"engineering_notation": ["py.typed"]},
     install_requires=requirements,
     setup_requires=['flake8', 'pytest'],
     license='MIT',
