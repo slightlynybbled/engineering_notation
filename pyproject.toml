@@ -1,0 +1,14 @@
+[project]
+name = "engineering-notation"
+version = "0.12.0"
+description = "Easy engineering notation"
+readme = "readme.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "pytest>=9.0.2",
+    "ruff>=0.14.14",
+]

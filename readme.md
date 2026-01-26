@@ -100,3 +100,17 @@ Additionally, since there are 'reserved' letters for sizing the number, you must
 # Contributions
 
 Contributions are welcome.  Feel free to make feature requests in the issues.
+
+## Test Installation
+
+If you are developing, you probably want to perform a local editable installation:
+
+```bash
+uv run pip install -e .
+```
+
+## Testing
+
+```bash
+uv run python -m pytest
+```

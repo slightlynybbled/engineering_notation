@@ -1,1 +1,3 @@
-__version__ = '0.11.0'
+import importlib.metadata
+
+__version__ = importlib.metadata.version("engineering_notation")

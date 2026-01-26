@@ -2,12 +2,13 @@
 .cache/
 *.egg-info/
 .eggs/
+.venv/
 __pycache__/
 build/
 dist/
 venv/
 .mypy_cache
-.venv
+.python-version
 conftest.py
 .pytest_cache
 .vscode
