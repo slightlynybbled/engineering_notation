@@ -1,0 +1,27 @@
+name: Publish
+on:
+  workflow_run:
+    workflows: ["Unit Tests"]
+    types: [completed]
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Build
+        uses: uv build
+
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo "First workflow was a failure"
