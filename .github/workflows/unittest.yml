@@ -13,8 +13,11 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v2
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
