@@ -1,15 +1,14 @@
-name: Publish
+name: Publish to pypi
 on:
-  workflow_run:
-    workflows: ["Unit Tests"]
-    types: [completed]
+  push:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
 
 jobs:
-  on-success:
+  publish:
     runs-on: ubuntu-latest
     environment:
       name: Publish
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     timeout-minutes: 10
     permissions:
       id-token: write
@@ -27,9 +26,3 @@ jobs:
 
       - name: Publish
         run: uv publish
-
-  on-failure:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    steps:
-      - run: echo "First workflow was a failure"
