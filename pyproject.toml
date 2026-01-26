@@ -9,6 +9,7 @@ dependencies = []
 [dependency-groups]
 dev = [
     "mypy>=1.19.1",
+    "numpy>=2.4.1",
     "pytest>=9.0.2",
     "ruff>=0.14.14",
 ]
