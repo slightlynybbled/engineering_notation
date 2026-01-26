@@ -20,6 +20,9 @@ jobs:
       - name: Build
         run: uv build
 
+      - name: Publish
+        run: uv publish
+
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
