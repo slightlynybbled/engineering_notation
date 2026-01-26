@@ -18,7 +18,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
 
       - name: Build
-        uses: uv build
+        run: uv build
 
   on-failure:
     runs-on: ubuntu-latest
