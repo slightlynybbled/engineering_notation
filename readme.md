@@ -9,7 +9,15 @@ The package is unit-less, so only operates on numeric values.  Unit detection ma
 
 # Installation
 
-Install using pip: `pip install engineering_notation`.
+Install using `pip` or `uv`:
+
+```bash
+pip install engineering_notation
+```
+
+```bash
+uv add engineering_notation
+```
 
 # Usage
 
@@ -87,16 +95,10 @@ Additionally, since there are 'reserved' letters for sizing the number, you must
 
 Contributions are welcome.  Feel free to make feature requests in the issues.
 
-## Test Installation
+## Running Tests
 
 If you are developing, you probably want to perform a local editable installation:
 
 ```bash
-uv run pip install -e .
-```
-
-## Testing
-
-```bash
-uv run python -m pytest
+uv run -m pytest
 ```
