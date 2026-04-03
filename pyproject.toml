@@ -1,6 +1,6 @@
 [project]
 name = "engineering-notation"
-version = "0.13.1"
+version = "0.13.2"
 description = "Easy engineering notation"
 readme = "readme.md"
 requires-python = ">=3.12"

@@ -13,7 +13,7 @@ wheels = [
 
 [[package]]
 name = "engineering-notation"
-version = "0.13.0"
+version = "0.13.1"
 source = { editable = "." }
 
 [package.dev-dependencies]

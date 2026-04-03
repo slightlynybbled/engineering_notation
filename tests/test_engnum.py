@@ -71,6 +71,20 @@ def test_engnum_significant():
     assert str(EngNumber("2.22m", significant=3)) == "2.22m"
 
 
+def test_engnum_precision_rounding():
+    assert str(EngNumber("1.234k", precision=1)) == "1.2k"
+    assert str(EngNumber("1.234k", precision=3)) == "1.234k"
+    assert str(EngNumber("1.2k", precision=0)) == "1k"
+    assert str(EngNumber("-1.234k", precision=1)) == "-1.2k"
+    assert str(EngNumber("1.666666", precision=2)) == "1.67"
+
+
+def test_engnum_precision_trailing_zeros():
+    assert str(EngNumber("1k", precision=2)) == "1.00k"
+    assert str(EngNumber("1k", precision=3)) == "1.000k"
+    assert str(EngNumber("2.0", precision=2)) == "2.00"
+
+
 def test_engnum_separator():
     assert str(EngNumber("1.23k", separator=" ")) == "1.23 k"
     assert str(EngNumber("1.23k", separator=" ").to_pn()) == "1k23"
@@ -364,6 +378,12 @@ def test_to_str():
 
     assert EngUnit("2m", unit="meter").unit == "meter"
     assert EngUnit("2m", unit="meter").eng_num == EngNumber("2m")
+
+
+def test_engunit_precision():
+    assert str(EngUnit("1.234kHz", precision=1)) == "1.2kHz"
+    assert str(EngUnit("1kHz", precision=3)) == "1.000kHz"
+    assert str(EngUnit("-1.234kHz", precision=1)) == "-1.2kHz"
 
 
 def test_to_str_large():

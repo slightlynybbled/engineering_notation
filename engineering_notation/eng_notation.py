@@ -97,7 +97,7 @@ class EngUnit:
     def __init__(
         self,
         value: str | int | float | EngNumber | EngUnit,
-        precision: int = 2,
+        precision: int | None = None,
         significant: int = 0,
         unit: str | None = None,
         separator: str = "",
@@ -108,6 +108,7 @@ class EngUnit:
         Args:
             value: String, int, float, or EngNumber value to parse.
             precision: Decimal places used when significant is 0.
+                Defaults to 2 when None.
             significant: Significant digits; takes precedence over precision.
             unit: Explicit unit suffix. If None, a unit suffix is parsed from
                 the end of a string value when present.
@@ -448,7 +449,7 @@ class EngNumber:
     def __init__(
         self,
         value: str | int | float | EngNumber,
-        precision: int = 2,
+        precision: int | None = None,
         significant: int = 0,
         separator: str = "",
     ) -> None:
@@ -458,6 +459,7 @@ class EngNumber:
         Args:
             value: String, int, float, or EngNumber value to parse.
             precision: Decimal places used when significant is 0.
+                Defaults to 2 when None.
             significant: Significant digits; takes precedence over precision.
             separator: String inserted between the numeric value and suffix.
 
@@ -465,7 +467,8 @@ class EngNumber:
             TypeError: If the value type is unsupported.
             ValueError: If a string value cannot be parsed by Decimal.
         """
-        self.precision = precision
+        self.precision = 2 if precision is None else precision
+        self._precision_explicit = precision is not None
         self.significant = significant
         self.separator = separator
 
@@ -560,7 +563,11 @@ class EngNumber:
             base = base.rstrip(".")
 
         # remove trailing .00 in precision 2
-        if self.precision == 2 and self.significant == 0:
+        if (
+            self.precision == 2
+            and self.significant == 0
+            and not self._precision_explicit
+        ):
             if ".00" in base:
                 base = base[:-3]
 
