@@ -2,8 +2,6 @@ from __future__ import annotations
 
 from decimal import Decimal
 import re
-from string import digits
-import sys
 from types import NotImplementedType
 
 from typing import Self
@@ -465,7 +463,8 @@ class EngNumber:
 
         Raises:
             TypeError: If the value type is unsupported.
-            ValueError: If a string value cannot be parsed by Decimal.
+            ValueError: If a string value cannot be parsed by Decimal or has no
+                numeric part.
         """
         self.precision = 2 if precision is None else precision
         self._precision_explicit = precision is not None
@@ -474,6 +473,12 @@ class EngNumber:
 
         if isinstance(value, str):
             numeric_part, _ = _split_value_and_unit(value)
+
+            if not numeric_part:
+                # Raise a value error to avoid the IndexError that would otherwise
+                # occur (due to numeric_part[-1]) if numeric_part is empty.
+                raise ValueError(f"Value {value!r} has no numeric part.")
+
             for suffix in _suffix_keys:
                 if suffix == numeric_part[-1]:
                     numeric_part = numeric_part[:-1] + _suffix_lookup[suffix]

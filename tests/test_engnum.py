@@ -646,3 +646,10 @@ def test_to_float():
     # negative_numbers
     assert float(EngUnit("-220k")) == -220000.0
     assert float(EngUnit("-220m")) == -0.220
+
+
+def test_value_error():
+    # Unconvertible values.
+
+    with pytest.raises(ValueError):
+        EngUnit("XXX")
