@@ -1,9 +1,9 @@
 [project]
 name = "engineering-notation"
-version = "0.13.2"
+version = "0.13.3"
 description = "Easy engineering notation"
 readme = "readme.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = []
 
 [dependency-groups]
